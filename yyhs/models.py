@@ -16,7 +16,8 @@ class UserInfo(models.Model):
     city = models.CharField(max_length=100)
     hometown = models.CharField(max_length=100)
 
-class classes(models.Model):
+class Classes(models.Model):
+    name = models.CharField(max_length=100)
     graduate = models.DateField()
     head_teacher = models.CharField(max_length=100)
     logo = models.CharField(max_length=100)

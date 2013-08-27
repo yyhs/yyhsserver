@@ -10,6 +10,12 @@ from yyhs import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
+router.register(r'userinfo', views.UserInfoViewSet)
+router.register(r'classes', views.ClassesViewSet)
+router.register(r'image', views.ImageViewSet)
+router.register(r'album', views.AlbumViewSet)
+router.register(r'post', views.PostViewSet)
+router.register(r'comment', views.CommentViewSet)
 
 urlpatterns = patterns('',
     # Examples:
