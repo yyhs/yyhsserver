@@ -18,6 +18,9 @@ class UserInfo(models.Model):
 
 class classes(models.Model):
     graduate = models.DateField()
+    head_teacher = models.CharField(max_length=100)
+    logo = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
 
 class Image(models.Model):
     name = models.CharField(max_length=100)
@@ -38,8 +41,14 @@ class Album(models.Model):
         ordering = ('pubdate',)
 
 class Post(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
     body = models.CharField(max_length=1024)
     category = models.CharField(max_length=10)
     pubdate = models.DateTimeField(auto_now_add=True)
 
-
+class Comment(models.Model):
+    reference = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    pubdate = models.DateTimeField(auto_now_add=True)
+    content = models.CharField(max_length=1024)
