@@ -25,20 +25,17 @@ class Classes(models.Model):
     name = models.CharField(max_length=10)
     year = models.DateField()
     number = models.IntegerField()
-    head_teacher = models.OneToOneField(Teacher)
+    head_teacher = models.ForeignKey(Teacher)
     logo = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     teachers = models.ManyToManyField(Teacher,related_name="%(app_label)s_%(class)s_related")
-
-    def __unicode__(self):
-        return u"classname is %s" % self.name
 
 class Student(UserInfo):
     banji = models.ForeignKey(Classes)
 
 class Album(models.Model):
     name = models.CharField(max_length=100, blank=True, default="album name")
-    author = models.CharField(max_length=100)
+    author = models.ForeignKey(User)
     pubdate = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=200, blank=True, default="")
     visiable = models.CharField(choices=VISIABLE_CHOICES,default="all",max_length=10)
@@ -66,14 +63,18 @@ class Post(models.Model):
 class News(Post):
     title = models.CharField(max_length=100)
 
+class NewsComment(Post):
+    news = models.ForeignKey(News)
+
 class Blog(Post):
     tag = models.CharField(max_length=10)
     belong_class = models.IntegerField()
 
-class Notes(Post):
-    target = models.CharField(max_length=10)
-    anonymous = models.IntegerField()
+class BlogComment(Post):
+    blog = models.ForeignKey(Blog)
 
-#class Comment(Post):
-#    post = models.ForeignKey(Post)
+class Message(Post):
+    target = models.ForeignKey(User,related_name="%(app_label)s_%(class)s_related")
 
+class Bottle(Post):
+    pass
